@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about-us", label: "About Us" },
@@ -21,7 +23,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/assets/images/logo/logo-metabee-navbar-animated.gif"
+              src={`${basePath}/assets/images/logo/logo-metabee-navbar-animated.gif`}
               alt="MetaBee"
               className="h-10 w-auto"
             />
