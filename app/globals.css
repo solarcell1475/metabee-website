@@ -23,3 +23,22 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
+
+/* Gently pan selected product images from top to bottom. */
+.image-pan-top-bottom {
+  animation: image-pan-top-bottom 7s ease-in-out infinite alternate;
+  will-change: object-position;
+}
+
+.group:hover .image-pan-top-bottom {
+  animation-play-state: paused;
+}
+
+@keyframes image-pan-top-bottom {
+  from {
+    object-position: center top;
+  }
+  to {
+    object-position: center bottom;
+  }
+}

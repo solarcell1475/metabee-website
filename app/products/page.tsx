@@ -9,6 +9,7 @@ const products = [
     description: "AI-based autonomous navigation for GPS-denied flight. Combines vision, environmental sensing, and GNSS/INS fusion.",
     image: "/assets/images/products/product-navkit-fpga-pcb.png",
     imagePosition: "center",
+    animatedPan: false,
   },
   {
     slug: "sky-guard",
@@ -17,6 +18,7 @@ const products = [
     description: "Complete low-altitude airspace security ecosystem — UAV detection radar (R3000 / R5000) and AI-powered flight decision support console.",
     image: "/assets/images/products/product-skyguard-radar.png",
     imagePosition: "center top",
+    animatedPan: true,
   },
   {
     slug: "hive-link",
@@ -25,6 +27,7 @@ const products = [
     description: "Intelligent ground stations with integrated sensing and communication for city-scale LAWN/UTM.",
     image: "/assets/images/products/product-isac-node.png",
     imagePosition: "center",
+    animatedPan: false,
   },
 ];
 
@@ -54,7 +57,9 @@ export default function Products() {
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+                      product.animatedPan ? "image-pan-top-bottom" : ""
+                    }`}
                     style={{ objectPosition: product.imagePosition }}
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
