@@ -1,18 +1,21 @@
 const team = [
   {
-    name: "Dr. Kenny To",
-    role: "Chief Executive Officer",
-    bio: "Ph.D. in THz Engineering (CityU), former antenna architect at Huawei; leads NavKit-S AI and overall systems engineering.",
-  },
-  {
     name: "Dr. Kevin Lin",
-    role: "Chief Technical Officer",
+    role: "Chief Executive Officer & Chief Technical Officer",
+    email: "qwlin@metabee.com.hk",
     bio: "Computational electromagnetics expert; oversees antenna design, RIS, and RF integration.",
   },
   {
-    name: "Dr. Kung Bo Ng",
+    name: "Dr. Aaron NG KUNG BO",
     role: "Consultant, RF & Integration",
+    email: "aaronng@metabee.com.hk",
     bio: "Veteran wireless communications engineer; ensures field-hardened RF performance and compliance.",
+  },
+  {
+    name: "Miss Noyes Mok",
+    role: "Technical Manager",
+    email: "noyesmok@metabee.com.hk",
+    bio: "Leads product development and manufacturing execution; digital signaling specialist with over 20 years of industry experience.",
   },
   {
     name: "Prof. Hang Wong",
@@ -55,6 +58,16 @@ export default function AboutUs() {
               <div key={member.name} className="p-6 rounded-xl bg-white/5 border border-white/10">
                 <h3 className="text-lg font-semibold text-white">{member.name}</h3>
                 <p className="text-[#f0b429] text-sm font-medium mb-2">{member.role}</p>
+                {member.email ? (
+                  <p className="text-sm mb-2">
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="text-zinc-300 hover:text-[#f0b429] transition-colors"
+                    >
+                      {member.email}
+                    </a>
+                  </p>
+                ) : null}
                 <p className="text-zinc-400 text-sm">{member.bio}</p>
               </div>
             ))}
