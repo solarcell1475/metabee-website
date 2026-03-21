@@ -9,6 +9,7 @@ const skyGuardProducts = [
     description:
       "Compact Ku-band pulse-Doppler radar with 360° mechanical scan, 3 km detection range, and real-time 3D tracking for small UAV targets.",
     image: "/assets/images/products/product-skyguard-radar.png",
+    imagePosition: "center top",
   },
   {
     slug: "radar-r5000",
@@ -17,6 +18,7 @@ const skyGuardProducts = [
     description:
       "Extended-range variant with 5 km detection capability and higher transmit power, designed for wide-area perimeter and critical-infrastructure protection.",
     image: "/assets/images/products/product-skyguard-radar.png",
+    imagePosition: "center top",
   },
   {
     slug: "console",
@@ -25,6 +27,7 @@ const skyGuardProducts = [
     description:
       "AI-powered platform fusing real-time meteorological data, aerodynamic models, and aircraft performance profiles to deliver actionable flight safety assessments.",
     image: "/assets/images/products/product-skyguard-console-map.png",
+    imagePosition: "center",
   },
 ];
 
@@ -64,6 +67,7 @@ export default function SkyGuardSeriesPage() {
                     alt={product.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    style={{ objectPosition: product.imagePosition }}
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>

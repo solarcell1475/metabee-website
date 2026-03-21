@@ -19,15 +19,15 @@ export default function ContactUs() {
 
             <div>
               <h3 className="text-sm font-semibold text-white mb-2">Email</h3>
-              <a href="mailto:metabeelimited@gmail.com" className="text-[#f0b429] hover:underline">
-                metabeelimited@gmail.com
+              <a href="mailto:info@metabee.com.hk" className="text-[#f0b429] hover:underline">
+                info@metabee.com.hk
               </a>
             </div>
 
             <div>
               <h3 className="text-sm font-semibold text-white mb-2">Phone</h3>
-              <a href="tel:+85226488481" className="text-[#f0b429] hover:underline">
-                +852 2648 8481
+              <a href="tel:+85293555325" className="text-[#f0b429] hover:underline">
+                +852 93555325
               </a>
             </div>
           </div>

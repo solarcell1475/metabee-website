@@ -48,13 +48,13 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">Contact Information</h4>
             <p className="text-sm text-zinc-400">
-              <a href="mailto:metabeelimited@gmail.com" className="hover:text-[#f0b429] transition-colors">
-                metabeelimited@gmail.com
+              <a href="mailto:info@metabee.com.hk" className="hover:text-[#f0b429] transition-colors">
+                info@metabee.com.hk
               </a>
             </p>
             <p className="text-sm text-zinc-400 mt-1">
-              <a href="tel:+85226488481" className="hover:text-[#f0b429] transition-colors">
-                +852 2648 8481
+              <a href="tel:+85293555325" className="hover:text-[#f0b429] transition-colors">
+                +852 93555325
               </a>
             </p>
             <p className="text-sm text-zinc-400 mt-2">

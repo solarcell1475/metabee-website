@@ -27,6 +27,8 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 ```
 
+For Apache hosting, clean routes (e.g. `/about-us`, `/products/navkit-s`) are handled by `public/.htaccess`, which is exported to `out/.htaccess`.
+
 ## Project Structure
 
 - `app/` — Pages (Home, About Us, Projects, Products, Contact Us)

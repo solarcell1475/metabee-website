@@ -16,8 +16,8 @@ const team = [
   },
   {
     name: "Prof. Hang Wong",
-    role: "Chief Scientific Advisor",
-    bio: "Director, State Key Laboratory of Terahertz and Millimeter Waves (CityU); inventor of multi-functional cavity antennas and meta-pixel.",
+    role: "Chief Scientific Advisor (Non-executive)",
+    bio: "State Key Laboratory of Terahertz and Millimeter Waves (CityU); inventor of multi-functional cavity antennas and meta-pixel.",
   },
 ];
 
