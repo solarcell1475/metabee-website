@@ -137,6 +137,124 @@ const slides: Slide[] = [
     mediaFit: "cover",
     showMediaBadge: true,
   },
+  {
+    id: "cover-zh",
+    title: "低空经济管理",
+    subtitle: "& 一体化反无人机系统",
+    bullets: [
+      "MetaBee 模块化产品线，覆盖空域运营、安防及城市级低空基础设施。",
+      "网页演示模式，适用于客户展示与高层汇报。",
+    ],
+    image: "/assets/images/hero/hero-city-drone-network.jpg",
+    mediaType: "image",
+    animatedMedia: true,
+    mediaAnimation: "kenburns",
+    mediaFit: "cover",
+    kicker: "MetaBee 产品线",
+    showMediaBadge: true,
+  },
+  {
+    id: "solution-zh",
+    title: "守护天空",
+    subtitle: "低空防御体系",
+    bullets: [
+      "保护油田等关键基础设施，如今需要构建真正的三维安全防线。",
+      "单一传感器远远不够，关键在于雷达、频谱与光电三者的协同联动。",
+      "一体化系统工作流程：探测（频谱）— Deep Listen 全天候监控射频信号，在无人机开机瞬间即时识别。",
+    ],
+    image: "/assets/images/demo/integrated-anti-drone-system.png",
+    mediaType: "image",
+    animatedMedia: false,
+    kicker: "架构总览",
+    mediaFit: "contain",
+    mediaPanelClassName: "bg-white p-3",
+    showMediaBadge: false,
+  },
+  {
+    id: "skyguard-zh",
+    title: "Sky-Guard 系列",
+    subtitle: "一体化反无人机核心",
+    bullets: [
+      "R3000：Ku 波段脉冲多普勒雷达，360° 扫描，典型小型无人机目标探测距离可达 3 公里。",
+      "R5000：增程型号，发射功率更高，探测能力可达 5 公里。",
+      "Sky-Guard 控制台：AI 辅助态势感知与飞行决策支持，面向一线操作人员。",
+      "通过以太网系统架构设计，支持与 EO/IR 载荷及反无人机子系统的集成。",
+    ],
+    image: "/assets/images/products/product-skyguard-radar.png",
+    mediaType: "image",
+    animatedMedia: true,
+    kicker: "一体化反无人机核心",
+    mediaAnimation: "vertical-pan",
+    mediaFit: "cover",
+    showMediaBadge: true,
+  },
+  {
+    id: "solution-field-zh",
+    title: "雷达实战部署",
+    subtitle: "现场演示",
+    bullets: [
+      "现场实拍：小型雷达以三脚架方式部署于开阔测试环境中。",
+      "展示快速架设、机动灵活部署能力，适用于周界安防与临时任务站点。",
+      "直观呈现 MetaBee 方案如何从系统架构落地为实际的低空监控能力。",
+    ],
+    image: "/assets/images/demo/field-demo.mp4",
+    mediaType: "video",
+    animatedMedia: false,
+    kicker: "现场演示",
+    mediaFit: "cover",
+    showMediaBadge: true,
+  },
+  {
+    id: "navkit-zh",
+    title: "NavKit-S",
+    subtitle: "机载自主导航套件",
+    bullets: [
+      "专为 GPS 拒止或 GNSS 降级环境设计。",
+      "融合视觉、环境感知与 GNSS/INS 组合导航。",
+      "为授权低空飞行任务提供连续性、韧性与更安全的执行保障。",
+    ],
+    image: "/assets/images/products/product-navkit-fpga-pcb.png",
+    mediaType: "image",
+    animatedMedia: true,
+    kicker: "导航智能",
+    mediaAnimation: "kenburns",
+    mediaFit: "cover",
+    showMediaBadge: true,
+  },
+  {
+    id: "hivelink-zh",
+    title: "Hive-Link / LAWN",
+    subtitle: "ISAC 节点与网络平台",
+    bullets: [
+      "面向低空网络覆盖的智能感知通信节点。",
+      "支持从单一站点扩展至城市级低空经济网络运营。",
+      "与 NavKit-S 和 Sky-Guard 形成模块化产品生态。",
+    ],
+    image: "/assets/images/products/product-isac-node.png",
+    mediaType: "image",
+    animatedMedia: true,
+    kicker: "低空网络",
+    mediaAnimation: "kenburns",
+    mediaFit: "cover",
+    showMediaBadge: true,
+  },
+  {
+    id: "architecture-zh",
+    title: "一体化部署架构",
+    bullets: [
+      "边缘层：雷达 + 射频感知 + 光电跟踪，部署于现场。",
+      "网络层：LAN/WAN 安全传输与控制链路。",
+      "中心层：融合处理、日志记录、策略管理与操作员控制台。",
+      "扩展层：机载 NavKit-S + 地面 Hive-Link，实现托管式低空经济规模化部署。",
+    ],
+    image: "/assets/images/products/product-skyguard-console-map.png",
+    mediaType: "image",
+    animatedMedia: true,
+    kicker: "部署蓝图",
+    mediaAnimation: "kenburns",
+    mediaFit: "cover",
+    showMediaBadge: true,
+  },
 ];
 
 export default function DemoPptxClient() {
@@ -177,7 +295,7 @@ export default function DemoPptxClient() {
 
   function stopAutoplay() {
     if (autoplayIntervalRef.current) {
-      clearInterval(autoplayIntervalRef.current);
+      clearTimeout(autoplayIntervalRef.current);
       autoplayIntervalRef.current = null;
     }
     setIsAutoplaying(false);
@@ -199,23 +317,33 @@ export default function DemoPptxClient() {
   useEffect(() => {
     if (!isAutoplaying) {
       if (autoplayIntervalRef.current) {
-        clearInterval(autoplayIntervalRef.current);
+        clearTimeout(autoplayIntervalRef.current);
         autoplayIntervalRef.current = null;
       }
       return;
     }
 
-    autoplayIntervalRef.current = setInterval(() => {
-      const currentIndex = slideIds.indexOf(activeSlideRef.current);
-      const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % slides.length : 0;
-      const nextId = slideIds[nextIndex];
-      setActiveSlide(nextId);
-      scrollToSlide(nextIndex);
-    }, 10000);
+    const longerIds = new Set(["skyguard", "solution-field", "skyguard-zh", "solution-field-zh"]);
+
+    function scheduleNext() {
+      const currentId = activeSlideRef.current;
+      const delay = longerIds.has(currentId) ? 15000 : 10000;
+
+      autoplayIntervalRef.current = setTimeout(() => {
+        const currentIndex = slideIds.indexOf(activeSlideRef.current);
+        const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % slides.length : 0;
+        const nextId = slideIds[nextIndex];
+        setActiveSlide(nextId);
+        scrollToSlide(nextIndex);
+        scheduleNext();
+      }, delay);
+    }
+
+    scheduleNext();
 
     return () => {
       if (autoplayIntervalRef.current) {
-        clearInterval(autoplayIntervalRef.current);
+        clearTimeout(autoplayIntervalRef.current);
         autoplayIntervalRef.current = null;
       }
     };
@@ -363,7 +491,7 @@ export default function DemoPptxClient() {
         @keyframes floatUp {
           0% {
             opacity: 0;
-            transform: translate3d(0, 28px, 0);
+            transform: translate3d(0, 10px, 0);
           }
           100% {
             opacity: 1;
@@ -416,7 +544,7 @@ export default function DemoPptxClient() {
         </button>
       </div>
 
-      <div className="fixed right-5 top-1/2 z-30 hidden -translate-y-1/2 lg:flex flex-col gap-3">
+      <div className="fixed right-5 top-1/2 z-30 hidden -translate-y-1/2 lg:flex flex-col gap-2">
         {slides.map((slide, idx) => {
           const isActive = slide.id === activeSlide;
           return (
@@ -462,12 +590,12 @@ export default function DemoPptxClient() {
             className="flex min-h-screen snap-start items-center px-2"
           >
             <div
-              className={`mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-16 transition-all duration-700 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14 lg:px-12 ${
-                activeSlide === slide.id ? "translate-y-0 opacity-100" : "translate-y-3 opacity-55"
+              className={`mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-16 transition-all duration-1000 ease-out lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14 lg:px-12 ${
+                activeSlide === slide.id ? "translate-y-0 opacity-100" : "translate-y-1 opacity-55"
               }`}
               style={
                 activeSlide === slide.id
-                  ? { animation: "floatUp 700ms ease both" }
+                  ? { animation: "floatUp 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both" }
                   : undefined
               }
             >
@@ -537,7 +665,7 @@ export default function DemoPptxClient() {
                     />
                     {slide.showMediaBadge !== false ? (
                       <div className="absolute left-4 top-4 z-20 rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-white/80 backdrop-blur">
-                        Live footage
+                        {slide.kicker ?? "Live footage"}
                       </div>
                     ) : null}
                   </div>

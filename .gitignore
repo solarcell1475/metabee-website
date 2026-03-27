@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sensitive credentials
+DEPLOY-DATAPLUGS.md
+EMAIL-ACCOUNTS.md
+
+# deployment artifacts
+metabee-deploy.zip
+metabee-site.zip
+*.zip
