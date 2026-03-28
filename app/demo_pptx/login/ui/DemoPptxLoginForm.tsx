@@ -11,9 +11,9 @@ export default function DemoPptxLoginForm({ nextPath }: { nextPath: string }) {
   const [error, setError] = useState("");
 
   const expectedUsername =
-    process.env.NEXT_PUBLIC_DEMO_PPTX_USERNAME ?? "metabee-demo";
+    process.env.NEXT_PUBLIC_DEMO_PPTX_USERNAME ?? "demo";
   const expectedPassword =
-    process.env.NEXT_PUBLIC_DEMO_PPTX_PASSWORD ?? "MetaBee@2026";
+    process.env.NEXT_PUBLIC_DEMO_PPTX_PASSWORD ?? "demo";
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
