@@ -24,8 +24,8 @@ const slides: Slide[] = [
     title: "Low-Altitude Economy Management",
     subtitle: "& Integrated Anti-Drone System",
     bullets: [
+      "The first LAE management company and university spin-off dedicated to low-altitude airspace operations, security, and city-scale infrastructure.",
       "MetaBee modular product line for airspace operations, security, and city-scale low-altitude infrastructure.",
-      "Web presentation mode for customer demo and executive review.",
     ],
     image: "/assets/images/hero/hero-city-drone-network.jpg",
     mediaType: "image",
@@ -142,8 +142,8 @@ const slides: Slide[] = [
     title: "低空经济管理",
     subtitle: "& 一体化反无人机系统",
     bullets: [
+      "首家低空经济管理公司暨大学衍生企业，专注低空空域运营、安防及城市级基础设施。",
       "MetaBee 模块化产品线，覆盖空域运营、安防及城市级低空基础设施。",
-      "网页演示模式，适用于客户展示与高层汇报。",
     ],
     image: "/assets/images/hero/hero-city-drone-network.jpg",
     mediaType: "image",
