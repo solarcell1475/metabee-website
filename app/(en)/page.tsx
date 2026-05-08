@@ -143,10 +143,6 @@ export default function Home() {
               <span className="text-white font-semibold">Innowave</span>
               <p className="text-zinc-500 text-sm mt-1">Satellite IoT Connectivity</p>
             </div>
-            <div className="px-6 py-3 rounded-lg bg-white/5 border border-white/10">
-              <span className="text-white font-semibold">City University of Hong Kong</span>
-              <p className="text-zinc-500 text-sm mt-1">State Key Lab of Terahertz</p>
-            </div>
           </div>
         </div>
       </section>

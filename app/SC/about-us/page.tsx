@@ -17,11 +17,6 @@ const team = [
     email: "noyesmok@metabee.com.hk",
     bio: "负责产品开发与制造执行；数字信号处理专家，拥有逾20年行业经验。",
   },
-  {
-    name: "黃衡 教授（Prof. Hang Wong）",
-    role: "首席科学顾问（非执行）",
-    bio: "香港城市大学太赫兹与毫米波国家重点实验室；多功能腔体天线与元像素发明人。",
-  },
 ];
 
 export default function AboutUsSC() {

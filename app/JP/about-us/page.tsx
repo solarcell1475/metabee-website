@@ -17,11 +17,6 @@ const team = [
     email: "noyesmok@metabee.com.hk",
     bio: "製品開発と製造実行を統括。デジタル信号処理の専門家、20年以上の業界経験。",
   },
-  {
-    name: "Prof. Hang Wong（黃衡 教授）",
-    role: "チーフサイエンティフィックアドバイザー（非常勤）",
-    bio: "香港城市大学テラヘルツ・ミリ波国家重点実験室。多機能キャビティアンテナとメタピクセルの発明者。",
-  },
 ];
 
 export default function AboutUsJP() {
