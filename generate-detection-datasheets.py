@@ -50,7 +50,7 @@ COMPANY_INFO = {
     "name": "MetaBee Technology Limited",
     "email": "info@metabee.com.hk",
     "web": "www.metabee.com.hk",
-    "address": "Hong Kong-Shenzhen Innovation and Technology Park, Hong Kong",
+    "address": "Unit 836, 8/F, Building 8, Hong Kong-Shenzhen Innovation and Technology Park, Hong Kong",
 }
 
 DATE_CODE = datetime.date.today().strftime("%B %Y")
@@ -113,6 +113,7 @@ PRODUCTS = [
             "Decodes Remote ID broadcasts: serial number, type, position, speed, altitude, and pilot location.",
             "≤ 25 W power draw — solar-viable for standalone node deployments.",
             "Dual-band Remote ID receiver in a sealed sensor dome with 360° horizontal, 90° vertical coverage.",
+            "Networked operation with the LAWN platform and third-party UTM feeds.",
         ],
         "specs": [
             ("Model", "BG-360R"),
@@ -137,6 +138,7 @@ PRODUCTS = [
             "解码 Remote ID 广播：序列号、机型、位置、速度、高度与飞手位置。",
             "功耗 ≤ 25 W，支持太阳能独立供电。",
             "密封传感器罩内的双频 Remote ID 接收机，单节点水平 360°、垂直 90° 覆盖。",
+            "接入 LAWN 平台及第三方 UTM 数据链路组网。",
         ],
         "specs": [
             ("型号", "BG-360R"),
@@ -161,6 +163,7 @@ PRODUCTS = [
             "Outputs range, azimuth, altitude, speed, longitude, and latitude in real time.",
             "Supports tripod deployment, vehicle-roof mobile monitoring, or fixed rooftop stations.",
             "Fully coherent pulse-Doppler processing, monopulse angle measurement, MTD integration, and CFAR detection.",
+            "Track initiation, target association, terminal reporting, and guidance output for EO identification.",
         ],
         "specs": [
             ("Frequency Band", "Ku, 16 GHz ± 100 MHz"),
@@ -185,6 +188,7 @@ PRODUCTS = [
             "实时输出距离、方位角、高度、速度、经纬度等目标参数。",
             "支持三脚架独立部署、车顶移动监测站和楼顶固定站部署。",
             "采用全相参脉冲多普勒、和差单脉冲测角、MTD 相参积累与 CFAR 恒虚警检测。",
+            "目标建航、跟踪、关联与显控终端上报，可向光电识别系统输出引导信息。",
         ],
         "specs": [
             ("工作频段", "Ku，16 GHz ± 100 MHz"),
@@ -231,7 +235,8 @@ PRODUCTS = [
         "image": "aoa-luneburg-rooftop-deployment.png",
         "features": [
             "无源射频侦测，不主动发射信号。",
-            "20 MHz 至 6 GHz 多频段覆盖，最大瞬时带宽 200 MHz。",
+            "20 MHz 至 6 GHz 多频段覆盖，重点频段可配置。",
+            "AoA / Luneburg lens 多波束天线提升 360° 方位感知和测向能力。",
             "支持 24 小时无人值守、自动唤醒、告警、历史查询与轨迹回放。",
             "支持频谱识别、协议解析、Remote ID、O4 解码和 600+ 机型识别。",
         ],
@@ -263,12 +268,12 @@ PRODUCTS = [
         "specs": [
             ("Model", "SG-6000P"),
             ("Frequency Range", "100 MHz to 6 GHz"),
-            ("Detection Radius", "1–2 km urban; 2–3 km open areas"),
+            ("Detection Radius", "1.5–2 km urban; 2–3 km open areas"),
             ("Response Time", "3–5 s"),
             ("Simultaneous Detection", "≥ 10 targets"),
             ("Dimensions / Weight", "185 × 80 × 33 mm; 658 ± 10 g with antenna"),
             ("Battery / Runtime", "8000 mAh; 3–4 h typical runtime"),
-            ("Display", "6-inch touch screen, 2160 × 1080"),
+            ("Display", "6-inch touch screen, 1080 × 2160"),
             ("System", "Android 12; 8 GB memory; 256 GB storage"),
         ],
     },
@@ -303,7 +308,7 @@ PRODUCTS = [
         "title": "Sky-Guard EO Tracking System",
         "subtitle": "Visible-light and thermal imaging for target confirmation",
         "summary": "An electro-optical tracking subsystem combining visible-light imaging, infrared thermal imaging, multi-spectral fusion, and servo tracking. It delivers day/night target detection, tracking, identification, and intelligent warning for low, slow, and small aerial targets.",
-        "image": "eo-tracking-1.png",
+        "image": "eo-rooftop-waterfront-deployment.jpg",
         "features": [
             "Visible-light + thermal imaging channels with multi-spectral data fusion.",
             "48× optical continuous zoom with automatic focus and optical defogging.",
@@ -327,7 +332,7 @@ PRODUCTS = [
         "title": "Sky-Guard 天卫光电跟踪系统",
         "subtitle": "可见光与红外热成像融合的目标确认与跟踪",
         "summary": "光电跟踪系统融合可见光成像、红外热成像、多光谱数据融合和伺服跟踪能力，可实现低小慢目标的昼夜探测、跟踪、识别和智能预警。",
-        "image": "eo-tracking-1.png",
+        "image": "eo-rooftop-waterfront-deployment.jpg",
         "features": [
             "可见光 + 红外热成像，多通道成像与数据融合。",
             "48 倍光学连续变焦，支持自动聚焦和光学透雾。",
@@ -460,10 +465,125 @@ def build_pdf(product):
     doc.build(story)
 
 
+def build_console_pdf():
+    styles = STYLES["en"]
+    filename = "Sky-Guard_Console_Datasheet.pdf"
+    doc = SimpleDocTemplate(
+        str(OUTPUT_DIR / filename),
+        pagesize=A4,
+        rightMargin=20 * mm,
+        leftMargin=20 * mm,
+        topMargin=16 * mm,
+        bottomMargin=16 * mm,
+        title="Sky-Guard Console",
+        author=COMPANY_INFO["name"],
+    )
+    product = {"title": "Sky-Guard Console"}
+    image_path = ROOT / "public/assets/images/products/product-skyguard-console-map.png"
+    image_flowable = Spacer(1, 8 * mm)
+    if image_path.exists():
+        image_flowable = RLImage(str(image_path), width=120 * mm, height=55 * mm, kind="proportional")
+        image_flowable.hAlign = "CENTER"
+
+    body = styles["body"]
+    small = styles["small"]
+    tier_header = [Paragraph(f"<b>{h}</b>", body) for h in ["Feature", "Standard", "Professional", "Enterprise"]]
+    tier_rows = [tier_header]
+    for row in [
+        ("Core Output", "Index monitoring & review", "Index-driven decision loop", "Full custom pipeline"),
+        ("Forecast Horizon", "24 h rolling", "48 h rolling", "72–120 h trend"),
+        ("Monitored Points", "5 custom locations", "10 custom locations", "10+ (expandable)"),
+        ("AI Service", "—", "Multi-index analytics", "Self-learning model"),
+        ("Alert Channel", "Web dashboard", "Real-time push notifications", "Multi-channel + audit trail"),
+        (
+            "Deliverables",
+            "Flight data logging, 24 h forecast, 5-point report, web portal",
+            "Daily report + video briefing, 48 h forecast, 10-point report, push notifications",
+            "Custom decision reports, flight behaviour logging, 72–120 h forecast, 10–15 point report, multi-system push",
+        ),
+    ]:
+        tier_rows.append([Paragraph(cell, small) for cell in row])
+    tier_table = Table(tier_rows, colWidths=[32 * mm, 46 * mm, 46 * mm, 46 * mm])
+    tier_style = [
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+        ("BACKGROUND", (0, 0), (-1, 0), HexColor("#f4f4f4")),
+        ("LINEBELOW", (0, 0), (-1, -1), 0.4, BRAND_BORDER),
+    ]
+    for idx in range(1, len(tier_rows)):
+        if idx % 2 == 0:
+            tier_style.append(("BACKGROUND", (0, idx), (-1, idx), HexColor("#f9f9f9")))
+    tier_table.setStyle(TableStyle(tier_style))
+
+    capabilities = [
+        "<b>Real-Time Weather Assessment:</b> Continuously evaluates whether current conditions meet safe takeoff and landing thresholds for each aircraft type.",
+        "<b>Flight Simulation:</b> Models flight attitude, climb rate, glide ratio, and control difficulty under varying meteorological scenarios.",
+        "<b>Optimal Flight Planning:</b> Recommends best takeoff/landing direction, timing, climb profiles, holding patterns, and return-to-home waypoints.",
+        "<b>Ideal Flight Window Prediction:</b> Forecasts time-slot-based operating windows to optimise camp scheduling and customer booking.",
+        "<b>Automated Risk Alerts:</b> Generates flight-risk warnings and operational recommendations to support instructors and pilots in real-time decision making.",
+        "<b>Personalised Flight Advice:</b> Tailors recommendations based on site terrain, user profile (age, activity intensity), and spatiotemporal context.",
+    ]
+    camp = [
+        "Individual flight decision recommendations per visitor",
+        "3-day advance safety risk forecast for the camp",
+        "Optimal flight period suggestions",
+        "Visual flight-path preview and simulation",
+        "Locally-tuned AI decision model that improves over time",
+        "Emergency / sudden-change weather alerts",
+    ]
+    compliance = [
+        "The service provides indices and advisory actions only; it does not replace any certified environmental data product.",
+        "Indices serve as decision support, not the sole basis for safety or regulatory compliance. Operators must retain final authority and on-site verification procedures.",
+        "When historical data is insufficient or significantly biased, model uncertainty will increase. The system flags such conditions and supports fallback to rule-based / conservative strategies.",
+    ]
+
+    story = [
+        header_table(product, styles),
+        Spacer(1, 8 * mm),
+        Paragraph("Sky-Guard Console", styles["title"]),
+        Paragraph("Digital Intelligent Flight Decision Support System", styles["subtitle"]),
+        image_flowable,
+        Spacer(1, 5 * mm),
+        Paragraph("Background", styles["heading"]),
+        Paragraph(
+            "As the low-altitude economy accelerates and public interest in recreational aviation grows, flight camps — serving general aviation, paragliding, drone testing, powered hang-gliders, hot-air balloons, and other light aircraft — are transitioning from experience-based management to data-driven, intelligent operations. Weather conditions such as wind speed, temperature, humidity, barometric pressure, cloud ceiling, and precipitation have a decisive impact on the safety and performance of light aircraft. The Sky-Guard Console bridges the gap between raw meteorological data and actionable flight decisions.",
+            body,
+        ),
+        Paragraph("Core Capabilities", styles["heading"]),
+    ]
+    for item in capabilities:
+        story.append(Paragraph(f"- {item}", body))
+        story.append(Spacer(1, 1.2 * mm))
+    story.append(Paragraph("Personalised Camp Features", styles["heading"]))
+    for item in camp:
+        story.append(Paragraph(f"- {item}", body))
+        story.append(Spacer(1, 1.0 * mm))
+    story.extend(
+        [
+            Paragraph("Solution Architecture", styles["heading"]),
+            Paragraph(
+                "The system fuses real-time meteorological data ingestion, an aircraft performance parameter library, aerodynamic models, and AI-assisted decision algorithms into a unified platform. Data sources include gridded weather model outputs (1–2 km resolution), on-site sensor calibration, and historical operational records.",
+                body,
+            ),
+            Paragraph("Service Tiers", styles["heading"]),
+            tier_table,
+            Paragraph("Compliance &amp; Risk Boundaries", styles["heading"]),
+        ]
+    )
+    for item in compliance:
+        story.append(Paragraph(f"- {item}", body))
+        story.append(Spacer(1, 1.0 * mm))
+    story.extend(footer(styles, "en"))
+    doc.build(story)
+    print("generated", filename)
+
+
 def main():
     for product in PRODUCTS:
         build_pdf(product)
         print("generated", product["filename"])
+    build_console_pdf()
 
 
 if __name__ == "__main__":
