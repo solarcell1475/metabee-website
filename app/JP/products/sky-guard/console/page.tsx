@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SkyGuardConsoleVideo from "@/components/products/SkyGuardConsoleVideo";
 
 export default function ConsolePageJP() {
   return (
@@ -9,6 +10,8 @@ export default function ConsolePageJP() {
           <Link href="/JP/products/sky-guard" className="text-[#f0b429] hover:underline text-sm mb-6 inline-block">← Sky-Guardシリーズに戻る</Link>
           <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">Sky-Guard コンソール</h1>
           <p className="text-xl text-[#f0b429] font-medium mb-8">デジタル・インテリジェント飛行意思決定支援システム</p>
+
+          <SkyGuardConsoleVideo locale="jp" />
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <div className="aspect-video relative rounded-xl overflow-hidden bg-black/30">

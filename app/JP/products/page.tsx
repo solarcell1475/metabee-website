@@ -14,10 +14,11 @@ const products = [
   {
     slug: "sky-guard",
     name: "Sky-Guard シリーズ",
-    tagline: "レーダー検出＆飛行意思決定支援",
-    description: "低高度空域セキュリティの完全エコシステム — UAV検出レーダー（R3000 / R5000）とAI飛行意思決定支援コンソール。",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
+    tagline: "検出・追跡・飛行意思決定支援",
+    description:
+      "低高度空域セキュリティの完全エコシステム — レーダー、RF検出、EO追跡、携帯型位置特定、AI飛行意思決定支援。",
+    image: "/assets/images/products/detection/sky-guard-detection-cover.png",
+    imagePosition: "center",
     animatedPan: true,
   },
   {

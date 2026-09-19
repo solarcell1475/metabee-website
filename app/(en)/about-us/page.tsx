@@ -17,6 +17,11 @@ const team = [
     email: "noyesmok@metabee.com.hk",
     bio: "Leads product development and manufacturing execution; digital signaling specialist with over 20 years of industry experience.",
   },
+  {
+    name: "Prof. Hang Wong",
+    role: "Chief Scientific Advisor (Non-executive)",
+    bio: "State Key Laboratory of Terahertz and Millimeter Waves (CityU); inventor of multi-functional cavity antennas and meta-pixel.",
+  },
 ];
 
 export default function AboutUs() {

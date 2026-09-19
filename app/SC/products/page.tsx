@@ -14,10 +14,11 @@ const products = [
   {
     slug: "sky-guard",
     name: "Sky-Guard 天卫系列",
-    tagline: "雷达探测与飞行决策支持",
-    description: "完整的低空空域安全生态——无人机探测雷达（R3000 / R5000）与AI飞行决策支持控制台。",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
+    tagline: "侦测、跟踪与飞行决策支持",
+    description:
+      "完整的低空空域安全生态——雷达、射频侦测、光电跟踪、手持定位与 AI 飞行决策支持平台。",
+    image: "/assets/images/products/detection/sky-guard-detection-cover.png",
+    imagePosition: "center",
     animatedPan: true,
   },
   {

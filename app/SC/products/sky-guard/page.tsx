@@ -3,22 +3,51 @@ import Image from "next/image";
 
 const skyGuardProducts = [
   {
-    slug: "radar-r3000",
-    name: "Sky-Guard 雷达 R3000",
-    tagline: "3公里低空无人机探测雷达",
-    description: "紧凑型Ku波段脉冲多普勒雷达，360°机械扫描，3公里探测距离，实时3D跟踪小型无人机目标。",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
-    animatedPan: true,
+    slug: "detection/remote-id-node",
+    name: "Sky-Guard 天卫 BG-360R Remote ID 监测节点",
+    tagline: "合作目标空情感知",
+    description:
+      "只收不发的 Remote ID 监测节点，解码每架合规无人机的广播——序列号、位置和飞手位置——构建城市级合作目标空情。",
+    image: "/assets/images/products/detection/bg360r-node-render.jpg",
+    imagePosition: "center",
+    animatedPan: false,
+    imageContain: true,
   },
   {
-    slug: "radar-r5000",
-    name: "Sky-Guard 雷达 R5000",
-    tagline: "5公里低空无人机探测雷达",
-    description: "增程型号，5公里探测能力，更高发射功率，专为广域周界与关键基础设施防护设计。",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
-    animatedPan: true,
+    slug: "detection/radar-detection",
+    name: "Sky-Guard 天卫雷达探测系统",
+    tagline: "360°低空无人机探测",
+    description: "Ku 波段雷达子系统，面向低空无人机探测、跟踪、三维目标输出和光电精确引导。",
+    image: "/assets/images/products/detection/radar-detection-1.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/fixed-drone-detection",
+    name: "Sky-Guard 天卫 SG-6000F AoA 无人机信号侦测系统",
+    tagline: "AoA 360° 无源射频信号侦测",
+    description: "结合 AoA / Luneburg lens 天线感知与 SDR 架构，覆盖 20 MHz 至 6 GHz，支持 600+ 机型识别和无人值守。",
+    image: "/assets/images/products/detection/aoa-luneburg-rooftop-deployment.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/handheld-drone-locator",
+    name: "Sky-Guard 天卫 SG-6000P 手持式无人机侦测定位设备",
+    tagline: "便携式无人机与飞手定位",
+    description: "轻量化现场设备，支持频谱探测、协议解析、Remote ID、FPV 探测、无人机定位与飞手定位。",
+    image: "/assets/images/products/detection/handheld-locator-1.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/eo-tracking",
+    name: "Sky-Guard 天卫光电跟踪系统",
+    tagline: "可见光与热成像确认",
+    description: "融合可见光成像、红外热成像、多光谱数据融合和伺服跟踪能力的光电跟踪子系统。",
+    image: "/assets/images/products/detection/eo-rooftop-waterfront-deployment.jpg",
+    imagePosition: "center",
+    animatedPan: false,
   },
   {
     slug: "console",
@@ -44,11 +73,38 @@ export default function SkyGuardSeriesPageSC() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+          <Link
+            href="/SC/products/sky-guard/use-cases"
+            className="group mb-12 grid lg:grid-cols-[1.1fr_1fr] overflow-hidden rounded-xl border border-[#f0b429]/30 bg-[#f0b429]/5 hover:border-[#f0b429]/60 transition-colors"
+          >
+            <div className="relative aspect-video bg-black/30">
+              <Image
+                src="/assets/images/products/detection/hk-waterfront-low-altitude.jpg"
+                alt="Sky-Guard 天卫应用场景"
+                fill
+                className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6 lg:p-8 flex flex-col justify-center">
+              <p className="text-[#f0b429] text-sm font-semibold mb-3">应用场景</p>
+              <h2 className="text-2xl lg:text-3xl font-semibold text-white mb-4">
+                面向高隐私场地、大型活动、海滨区域和应急巡查的低空安全应用
+              </h2>
+              <p className="text-zinc-400 leading-relaxed">
+                查看无源 RF/AoA 侦测、光电确认和手持飞手定位如何组成分层防护方案。
+              </p>
+              <span className="mt-5 text-[#f0b429] font-medium group-hover:underline">
+                查看应用场景 →
+              </span>
+            </div>
+          </Link>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {skyGuardProducts.map((product) => (
               <Link key={product.slug} href={`/SC/products/sky-guard/${product.slug}`} className="group block rounded-xl border border-white/10 overflow-hidden bg-white/5 hover:border-[#f0b429]/50 transition-colors">
-                <div className="aspect-video relative bg-black/30">
-                  <Image src={product.image} alt={product.name} fill className={`object-cover group-hover:scale-105 transition-transform duration-300 ${product.animatedPan ? "image-pan-top-bottom" : ""}`} style={{ objectPosition: product.imagePosition }} sizes="(max-width: 768px) 100vw, 33vw" />
+                <div className="aspect-video relative bg-[#0a0a0a]">
+                  <Image src={product.image} alt={product.name} fill className={`${product.imageContain ? "object-contain p-4" : "object-cover"} group-hover:scale-105 transition-transform duration-300 ${product.animatedPan ? "image-pan-top-bottom" : ""}`} style={{ objectPosition: product.imagePosition }} sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-white group-hover:text-[#f0b429] transition-colors">{product.name}</h2>
@@ -58,30 +114,6 @@ export default function SkyGuardSeriesPageSC() {
                 </div>
               </Link>
             ))}
-          </div>
-
-          <div className="mt-16 rounded-xl border border-white/10 bg-white/5 overflow-hidden">
-            <div className="p-6 lg:p-8">
-              <h2 className="text-2xl font-semibold text-white mb-6">雷达型号对比</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-white/10 text-left">
-                      <th className="py-3 pr-4 text-zinc-400 font-medium">参数</th>
-                      <th className="py-3 px-4 text-[#f0b429] font-semibold">R3000</th>
-                      <th className="py-3 pl-4 text-[#f0b429] font-semibold">R5000</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-zinc-300">
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">最大探测距离</td><td className="py-3 px-4">≥ 3 km</td><td className="py-3 pl-4">≥ 5 km</td></tr>
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">峰值发射功率</td><td className="py-3 px-4">≤ 20 W</td><td className="py-3 pl-4">≤ 100 W</td></tr>
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">功耗</td><td className="py-3 px-4">≤ 150 W</td><td className="py-3 pl-4">≤ 200 W</td></tr>
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">系统重量</td><td className="py-3 px-4">≤ 30 kg</td><td className="py-3 pl-4">≤ 35 kg</td></tr>
-                    <tr><td className="py-3 pr-4 text-zinc-400">频段</td><td className="py-3 px-4">Ku (16 GHz ± 100 MHz)</td><td className="py-3 pl-4">Ku (16 GHz ± 100 MHz)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
       </section>

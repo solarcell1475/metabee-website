@@ -57,12 +57,12 @@ const slides: Slide[] = [
     title: "Sky-Guard Series",
     subtitle: "Integrated Anti-Drone Core",
     bullets: [
-      "R3000: Ku-band pulse-Doppler radar, 360 degree scan, up to 3 km detection for typical small UAV targets.",
-      "R5000: extended-range model with higher transmit power and up to 5 km detection capability.",
+      "Radar Detection System: Ku-band pulse-Doppler radar with 360° scan, 3D target tracking, and precision EO cueing.",
+      "AoA RF sensing, handheld locating, and EO tracking complete the detect-locate-confirm workflow.",
       "Sky-Guard Console: AI-assisted situational awareness and flight decision support for operational users.",
       "Designed for integration with EO/IR payloads and counter-UAS subsystems through Ethernet-based system architecture.",
     ],
-    image: "/assets/images/products/product-skyguard-radar.png",
+    image: "/assets/images/products/detection/radar-detection-1.png",
     mediaType: "image",
     animatedMedia: true,
     kicker: "Integrated Anti-Drone Core",
@@ -175,12 +175,12 @@ const slides: Slide[] = [
     title: "Sky-Guard 系列",
     subtitle: "一体化反无人机核心",
     bullets: [
-      "R3000：Ku 波段脉冲多普勒雷达，360° 扫描，典型小型无人机目标探测距离可达 3 公里。",
-      "R5000：增程型号，发射功率更高，探测能力可达 5 公里。",
+      "天卫雷达探测系统：Ku 波段脉冲多普勒雷达，360° 扫描，三维目标跟踪与光电精确引导。",
+      "AoA 射频侦测、手持定位与光电跟踪构成探测—定位—确认完整流程。",
       "Sky-Guard 控制台：AI 辅助态势感知与飞行决策支持，面向一线操作人员。",
       "通过以太网系统架构设计，支持与 EO/IR 载荷及反无人机子系统的集成。",
     ],
-    image: "/assets/images/products/product-skyguard-radar.png",
+    image: "/assets/images/products/detection/radar-detection-1.png",
     mediaType: "image",
     animatedMedia: true,
     kicker: "一体化反无人机核心",
@@ -257,6 +257,9 @@ const slides: Slide[] = [
   },
 ];
 
+/** When "1", kiosk / offline pack opens the deck without login (see innoex-metabee-demo build). */
+const DEMO_PUBLIC_KIOSK = process.env.NEXT_PUBLIC_METABEE_DEMO_PUBLIC === "1";
+
 export default function DemoPptxClient() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -267,9 +270,11 @@ export default function DemoPptxClient() {
   const [activeSlide, setActiveSlide] = useState<string>("cover");
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isAutoplaying, setIsAutoplaying] = useState(false);
-  const [isAuthed] = useState(
-    () => sessionStorage.getItem("metabee_demo_auth") === "ok",
-  );
+  const [isAuthed] = useState(() => {
+    if (DEMO_PUBLIC_KIOSK) return true;
+    if (typeof window === "undefined") return false;
+    return sessionStorage.getItem("metabee_demo_auth") === "ok";
+  });
 
   const slideIds = useMemo(() => slides.map((s) => s.id), []);
   const activeIndex = Math.max(0, slideIds.indexOf(activeSlide));
@@ -308,6 +313,7 @@ export default function DemoPptxClient() {
   }
 
   useEffect(() => {
+    if (DEMO_PUBLIC_KIOSK) return;
     if (!isAuthed) {
       window.location.replace("/demo_pptx/login?next=/demo_pptx");
       return;
@@ -535,13 +541,15 @@ export default function DemoPptxClient() {
         >
           {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
         </button>
-        <button
-          type="button"
-          onClick={logout}
-          className="rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs text-zinc-200 backdrop-blur-xl transition hover:border-[#f0b429]"
-        >
-          Logout
-        </button>
+        {!DEMO_PUBLIC_KIOSK ? (
+          <button
+            type="button"
+            onClick={logout}
+            className="rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs text-zinc-200 backdrop-blur-xl transition hover:border-[#f0b429]"
+          >
+            Logout
+          </button>
+        ) : null}
       </div>
 
       <div className="fixed right-5 top-1/2 z-30 hidden -translate-y-1/2 lg:flex flex-col gap-2">

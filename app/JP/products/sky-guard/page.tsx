@@ -3,22 +3,51 @@ import Image from "next/image";
 
 const skyGuardProducts = [
   {
-    slug: "radar-r3000",
-    name: "Sky-Guard レーダー R3000",
-    tagline: "3 km 低高度UAV検出レーダー",
-    description: "コンパクトなKuバンドパルスドップラーレーダー。360°機械走査、3 km検出距離、小型UAVのリアルタイム3Dトラッキング。",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
-    animatedPan: true,
+    slug: "detection/remote-id-node",
+    name: "Sky-Guard BG-360R Remote ID 監視ノード",
+    tagline: "協調空域把握",
+    description:
+      "受信専用のRemote ID監視ノード。準拠ドローンのすべての送信——シリアル番号、位置、操縦者位置——をデコードし、都市規模の協調空域状況を構築します。",
+    image: "/assets/images/products/detection/bg360r-node-render.jpg",
+    imagePosition: "center",
+    animatedPan: false,
+    imageContain: true,
   },
   {
-    slug: "radar-r5000",
-    name: "Sky-Guard レーダー R5000",
-    tagline: "5 km 低高度UAV検出レーダー",
-    description: "拡張距離型。5 km検出能力と高出力送信電力を備え、広域ペリメーターおよび重要インフラ防護向け。",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
-    animatedPan: true,
+    slug: "detection/radar-detection",
+    name: "Sky-Guard レーダー検出システム",
+    tagline: "360°低高度UAV検出",
+    description: "低高度UAVの検出、追跡、3D目標出力、EO精密キューイングに対応するKuバンドレーダーサブシステム。",
+    image: "/assets/images/products/detection/radar-detection-1.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/fixed-drone-detection",
+    name: "Sky-Guard SG-6000F AoA ドローン信号検出システム",
+    tagline: "360°パッシブRF検出",
+    description: "AoA / Luneburg lensアンテナ感知とSDRアーキテクチャに基づくパッシブRF信号検出システム。20 MHz〜6 GHz、600機種以上の認識、無人運用に対応。",
+    image: "/assets/images/products/detection/aoa-luneburg-rooftop-deployment.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/handheld-drone-locator",
+    name: "Sky-Guard SG-6000P ハンドヘルド・ドローンロケーター",
+    tagline: "携帯型ドローン・操縦者位置特定",
+    description: "スペクトラム検出、プロトコル解析、Remote ID、FPV検出、ドローン位置特定、操縦者位置特定に対応する軽量現場端末。",
+    image: "/assets/images/products/detection/handheld-locator-1.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/eo-tracking",
+    name: "Sky-Guard EOトラッキングシステム",
+    tagline: "可視光・熱画像確認",
+    description: "可視光撮像、赤外線熱画像、マルチスペクトル融合、サーボ追跡を組み合わせたEO追跡サブシステム。",
+    image: "/assets/images/products/detection/eo-rooftop-waterfront-deployment.jpg",
+    imagePosition: "center",
+    animatedPan: false,
   },
   {
     slug: "console",
@@ -44,11 +73,40 @@ export default function SkyGuardSeriesPageJP() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+          <Link
+            href="/JP/products/sky-guard/use-cases"
+            className="group mb-12 grid lg:grid-cols-[1.1fr_1fr] overflow-hidden rounded-xl border border-[#f0b429]/30 bg-[#f0b429]/5 hover:border-[#f0b429]/60 transition-colors"
+          >
+            <div className="relative aspect-video bg-black/30">
+              <Image
+                src="/assets/images/products/detection/hk-waterfront-low-altitude.jpg"
+                alt="Sky-Guard ユースケース"
+                fill
+                className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6 lg:p-8 flex flex-col justify-center">
+              <p className="text-[#f0b429] text-sm font-semibold mb-3">
+                ユースケース
+              </p>
+              <h2 className="text-2xl lg:text-3xl font-semibold text-white mb-4">
+                高プライバシー施設、大規模イベント、沿岸エリア、緊急巡回向けの低高度セキュリティ
+              </h2>
+              <p className="text-zinc-400 leading-relaxed">
+                パッシブRF/AoA検出、EO確認、ハンドヘルド操縦者位置特定を分層防護として配備する方法を紹介します。
+              </p>
+              <span className="mt-5 text-[#f0b429] font-medium group-hover:underline">
+                ユースケースを見る →
+              </span>
+            </div>
+          </Link>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {skyGuardProducts.map((product) => (
               <Link key={product.slug} href={`/JP/products/sky-guard/${product.slug}`} className="group block rounded-xl border border-white/10 overflow-hidden bg-white/5 hover:border-[#f0b429]/50 transition-colors">
-                <div className="aspect-video relative bg-black/30">
-                  <Image src={product.image} alt={product.name} fill className={`object-cover group-hover:scale-105 transition-transform duration-300 ${product.animatedPan ? "image-pan-top-bottom" : ""}`} style={{ objectPosition: product.imagePosition }} sizes="(max-width: 768px) 100vw, 33vw" />
+                <div className="aspect-video relative bg-[#0a0a0a]">
+                  <Image src={product.image} alt={product.name} fill className={`${product.imageContain ? "object-contain p-4" : "object-cover"} group-hover:scale-105 transition-transform duration-300 ${product.animatedPan ? "image-pan-top-bottom" : ""}`} style={{ objectPosition: product.imagePosition }} sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-white group-hover:text-[#f0b429] transition-colors">{product.name}</h2>
@@ -58,30 +116,6 @@ export default function SkyGuardSeriesPageJP() {
                 </div>
               </Link>
             ))}
-          </div>
-
-          <div className="mt-16 rounded-xl border border-white/10 bg-white/5 overflow-hidden">
-            <div className="p-6 lg:p-8">
-              <h2 className="text-2xl font-semibold text-white mb-6">レーダーモデル比較</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-white/10 text-left">
-                      <th className="py-3 pr-4 text-zinc-400 font-medium">パラメータ</th>
-                      <th className="py-3 px-4 text-[#f0b429] font-semibold">R3000</th>
-                      <th className="py-3 pl-4 text-[#f0b429] font-semibold">R5000</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-zinc-300">
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">最大検出距離</td><td className="py-3 px-4">≥ 3 km</td><td className="py-3 pl-4">≥ 5 km</td></tr>
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">ピーク送信電力</td><td className="py-3 px-4">≤ 20 W</td><td className="py-3 pl-4">≤ 100 W</td></tr>
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">消費電力</td><td className="py-3 px-4">≤ 150 W</td><td className="py-3 pl-4">≤ 200 W</td></tr>
-                    <tr className="border-b border-white/5"><td className="py-3 pr-4 text-zinc-400">システム重量</td><td className="py-3 px-4">≤ 30 kg</td><td className="py-3 pl-4">≤ 35 kg</td></tr>
-                    <tr><td className="py-3 pr-4 text-zinc-400">周波数帯</td><td className="py-3 px-4">Ku (16 GHz ± 100 MHz)</td><td className="py-3 pl-4">Ku (16 GHz ± 100 MHz)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
       </section>

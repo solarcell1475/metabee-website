@@ -3,24 +3,55 @@ import Image from "next/image";
 
 const skyGuardProducts = [
   {
-    slug: "radar-r3000",
-    name: "Sky-Guard Radar R3000",
-    tagline: "3 km Low-Altitude UAV Detection Radar",
+    slug: "detection/remote-id-node",
+    name: "Sky-Guard BG-360R Remote ID Monitoring Node",
+    tagline: "Cooperative Airspace Awareness",
     description:
-      "Compact Ku-band pulse-Doppler radar with 360° mechanical scan, 3 km detection range, and real-time 3D tracking for small UAV targets.",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
-    animatedPan: true,
+      "Receive-only Remote ID monitoring node that decodes every compliant drone broadcast — serial number, position, and pilot location — feeding city-scale cooperative traffic pictures.",
+    image: "/assets/images/products/detection/bg360r-node-render.jpg",
+    imagePosition: "center",
+    animatedPan: false,
+    imageContain: true,
   },
   {
-    slug: "radar-r5000",
-    name: "Sky-Guard Radar R5000",
-    tagline: "5 km Low-Altitude UAV Detection Radar",
+    slug: "detection/radar-detection",
+    name: "Sky-Guard Radar Detection System",
+    tagline: "360° Low-Altitude UAV Detection",
     description:
-      "Extended-range variant with 5 km detection capability and higher transmit power, designed for wide-area perimeter and critical-infrastructure protection.",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
-    animatedPan: true,
+      "Ku-band radar subsystem for low-altitude UAV detection, tracking, 3D target output, and precision EO cueing.",
+    image: "/assets/images/products/detection/radar-detection-1.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/fixed-drone-detection",
+    name: "Sky-Guard SG-6000F AoA Drone Signal Detection System",
+    tagline: "AoA 360° Drone Signal Detection",
+    description:
+      "Passive RF signal detection with AoA / Luneburg lens antenna sensing, 20 MHz to 6 GHz coverage, 600+ model recognition, and unattended operation.",
+    image: "/assets/images/products/detection/aoa-luneburg-rooftop-deployment.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/handheld-drone-locator",
+    name: "Sky-Guard SG-6000P Handheld Drone Locator",
+    tagline: "Portable Drone & Pilot Locating",
+    description:
+      "Lightweight field device for spectrum detection, protocol analysis, Remote ID, FPV detection, drone locating, and pilot locating.",
+    image: "/assets/images/products/detection/handheld-locator-1.png",
+    imagePosition: "center",
+    animatedPan: false,
+  },
+  {
+    slug: "detection/eo-tracking",
+    name: "Sky-Guard EO Tracking System",
+    tagline: "Visible-Light & Thermal Confirmation",
+    description:
+      "Electro-optical tracking subsystem combining visible-light imaging, thermal imaging, multi-spectral fusion, and servo tracking.",
+    image: "/assets/images/products/detection/eo-rooftop-waterfront-deployment.jpg",
+    imagePosition: "center",
+    animatedPan: false,
   },
   {
     slug: "console",
@@ -57,19 +88,50 @@ export default function SkyGuardSeriesPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+          <Link
+            href="/products/sky-guard/use-cases"
+            className="group mb-12 grid lg:grid-cols-[1.1fr_1fr] overflow-hidden rounded-xl border border-[#f0b429]/30 bg-[#f0b429]/5 hover:border-[#f0b429]/60 transition-colors"
+          >
+            <div className="relative aspect-video bg-black/30">
+              <Image
+                src="/assets/images/products/detection/hk-waterfront-low-altitude.jpg"
+                alt="Sky-Guard use cases"
+                fill
+                className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6 lg:p-8 flex flex-col justify-center">
+              <p className="text-[#f0b429] text-sm font-semibold mb-3">
+                Application Scenarios
+              </p>
+              <h2 className="text-2xl lg:text-3xl font-semibold text-white mb-4">
+                Use cases for high-privacy sites, major events, waterfront areas, and emergency patrols
+              </h2>
+              <p className="text-zinc-400 leading-relaxed">
+                See how passive RF/AoA sensing, EO confirmation, and handheld pilot locating are deployed as concentric protection layers.
+              </p>
+              <span className="mt-5 text-[#f0b429] font-medium group-hover:underline">
+                View use cases →
+              </span>
+            </div>
+          </Link>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {skyGuardProducts.map((product) => (
               <Link
                 key={product.slug}
                 href={`/products/sky-guard/${product.slug}`}
                 className="group block rounded-xl border border-white/10 overflow-hidden bg-white/5 hover:border-[#f0b429]/50 transition-colors"
               >
-                <div className="aspect-video relative bg-black/30">
+                <div className="aspect-video relative bg-[#0a0a0a]">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+                    className={`${
+                      product.imageContain ? "object-contain p-4" : "object-cover"
+                    } group-hover:scale-105 transition-transform duration-300 ${
                       product.animatedPan ? "image-pan-top-bottom" : ""
                     }`}
                     style={{ objectPosition: product.imagePosition }}
@@ -92,53 +154,6 @@ export default function SkyGuardSeriesPage() {
                 </div>
               </Link>
             ))}
-          </div>
-
-          {/* Key Differentiators */}
-          <div className="mt-16 rounded-xl border border-white/10 bg-white/5 overflow-hidden">
-            <div className="p-6 lg:p-8">
-              <h2 className="text-2xl font-semibold text-white mb-6">
-                Radar Model Comparison
-              </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-white/10 text-left">
-                      <th className="py-3 pr-4 text-zinc-400 font-medium">Parameter</th>
-                      <th className="py-3 px-4 text-[#f0b429] font-semibold">R3000</th>
-                      <th className="py-3 pl-4 text-[#f0b429] font-semibold">R5000</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-zinc-300">
-                    <tr className="border-b border-white/5">
-                      <td className="py-3 pr-4 text-zinc-400">Max Detection Range</td>
-                      <td className="py-3 px-4">≥ 3 km</td>
-                      <td className="py-3 pl-4">≥ 5 km</td>
-                    </tr>
-                    <tr className="border-b border-white/5">
-                      <td className="py-3 pr-4 text-zinc-400">Peak Transmit Power</td>
-                      <td className="py-3 px-4">≤ 20 W</td>
-                      <td className="py-3 pl-4">≤ 100 W</td>
-                    </tr>
-                    <tr className="border-b border-white/5">
-                      <td className="py-3 pr-4 text-zinc-400">Power Consumption</td>
-                      <td className="py-3 px-4">≤ 150 W</td>
-                      <td className="py-3 pl-4">≤ 200 W</td>
-                    </tr>
-                    <tr className="border-b border-white/5">
-                      <td className="py-3 pr-4 text-zinc-400">System Weight</td>
-                      <td className="py-3 px-4">≤ 30 kg</td>
-                      <td className="py-3 pl-4">≤ 35 kg</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 pr-4 text-zinc-400">Frequency Band</td>
-                      <td className="py-3 px-4">Ku (16 GHz ± 100 MHz)</td>
-                      <td className="py-3 pl-4">Ku (16 GHz ± 100 MHz)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
       </section>

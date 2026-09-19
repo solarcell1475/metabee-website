@@ -14,10 +14,11 @@ const products = [
   {
     slug: "sky-guard",
     name: "Sky-Guard Series",
-    tagline: "Radar Detection & Flight Decision Support",
-    description: "Complete low-altitude airspace security ecosystem — UAV detection radar (R3000 / R5000) and AI-powered flight decision support console.",
-    image: "/assets/images/products/product-skyguard-radar.png",
-    imagePosition: "center top",
+    tagline: "Detection, Tracking & Flight Decision Support",
+    description:
+      "Complete low-altitude airspace security ecosystem — radar, RF detection, EO tracking, handheld locating, and AI-powered flight decision support.",
+    image: "/assets/images/products/detection/sky-guard-detection-cover.png",
+    imagePosition: "center",
     animatedPan: true,
   },
   {

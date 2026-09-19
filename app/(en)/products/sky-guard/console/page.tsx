@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SkyGuardConsoleVideo from "@/components/products/SkyGuardConsoleVideo";
 
 export default function ConsolePage() {
   return (
@@ -18,6 +19,8 @@ export default function ConsolePage() {
           <p className="text-xl text-[#f0b429] font-medium mb-8">
             Digital Intelligent Flight Decision Support System
           </p>
+
+          <SkyGuardConsoleVideo locale="en" />
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <div className="aspect-video relative rounded-xl overflow-hidden bg-black/30">
